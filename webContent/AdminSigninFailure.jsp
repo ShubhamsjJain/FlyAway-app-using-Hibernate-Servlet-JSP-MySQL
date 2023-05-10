@@ -73,7 +73,7 @@ text-align: right;
 }
 </style>
 <meta charset="ISO-8859-1">
-<title>Signin/Signup</title>
+<title>Admin Signin/Signup</title>
 </head>
 <body>
 
@@ -86,11 +86,13 @@ text-align: right;
                           <h1>Sign In</h1>
                           <p>Please Enter Details.</p>
                           <hr>
+                          
+                          <h4>Try Again!Wrong Admin ID or Password.</h4>
     
-                          <input type="hidden" name="command" value="VERIFY"/>
+                          <input type="hidden" name="command" value="VERIFYADMIN"/>
 
-                          <label for="email"><b>User Name</b></label>
-                          <input type="text" placeholder="Enter User Name" name="username" required>
+                          <label for="email"><b>Admin ID</b></label>
+                          <input type="text" placeholder="Enter ID" name="username" required>
 
                           <label for="psw"><b>Password</b></label>
                           <input type="password" placeholder="Enter Password" name="password" required>
@@ -100,9 +102,9 @@ text-align: right;
                                        <button type="submit" class="signupbtn">Sign In</button>
    
                                  </div>
-                           <p>New user <a href="SignUpfront.jsp" style="color:dodgerblue">click here</a>.</p>
+                           <p>New Admin <a href="AdminSignup.jsp" style="color:dodgerblue">click here</a>.</p>
                            <div class="right-align">
-                           <a href="AdminSignin.jsp" style="color:dodgerblue">Login as Admin</a>
+                           <a href="SignInFront.jsp" style="color:dodgerblue">Login as User</a>
                            </div>
                      </div>
            </form>

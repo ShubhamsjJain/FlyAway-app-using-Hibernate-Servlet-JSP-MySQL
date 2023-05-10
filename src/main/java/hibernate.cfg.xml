@@ -15,6 +15,7 @@
     <property name="hbm2ddl.auto">create</property>   <!-- automatically create table -->
     <property name="show_sql">true</property>
     <mapping class = "com.simplilearn.flyaway.User"/>
+    <mapping class = "com.simplilearn.flyaway.Admin"/>
     
   
   </session-factory>

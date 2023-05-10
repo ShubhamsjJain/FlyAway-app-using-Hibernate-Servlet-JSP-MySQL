@@ -49,6 +49,14 @@ try {
 		        	
 		        	signIn(request,response);    //Provided below
 			        break;
+			        
+		        case "VERIFYADMIN":
+					//Verify the admin in MVC fashion
+		        	
+		        	AdminsignIn(request,response);    //Provided below
+			        break;
+			        
+			        
 		        	
 					
 					
@@ -58,6 +66,15 @@ try {
 			    
 			        signUp(request,response);    //Provided below
 			        break;
+			        
+			    case "NEWADMIN":
+					
+			        //Add the Admin in MVC fashion 
+			    
+			        signUpAdmin(request,response);    //Provided below
+			        break;
+			        
+			        
 			        
 			    case "LOAD":
 			    	
@@ -93,6 +110,33 @@ try {
 	}
 
 	
+	private void AdminsignIn(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		
+		String e_mail = request.getParameter("username");	
+		String password = request.getParameter("password");	
+		
+        Admin admin = userdao.verifyAdmin(e_mail, password);
+        
+        if(admin == null) {            // i.e Admin doesn't exist
+        	response.sendRedirect("AdminSigninFailure.jsp");
+        }else {                        // i.e since got Admin object hence admin exist;
+        	response.sendRedirect("AdminWelcomePage.jsp");
+        }
+		
+	}
+
+	private void signUpAdmin(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		
+		String e_mail = request.getParameter("username");	
+		String password = request.getParameter("password");	
+		
+		userdao.addNewAdmin(e_mail, password);
+		
+		response.sendRedirect("AdminSignin.jsp");
+		
+		
+	}
+
 	private void signIn(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		
 		String e_mail = request.getParameter("username");	
