@@ -10,6 +10,8 @@ import org.hibernate.Transaction;
 
 
 
+
+
 public class UserDAO {
 	
 	private SessionFactory factory;
@@ -62,6 +64,31 @@ public class UserDAO {
 		}
 		
 	}
+
+	public User verifyUser(String e_mail, String password)throws Exception {
+		
+		Session session = factory.openSession();
+		
+		try {
+			
+			//check whether user entity with that email and password exist or not 
+			
+			
+		Query q = session.createQuery("from User u where u.username = :name AND u.password = :password"); 
+		q.setParameter("name", e_mail);
+		q.setParameter("password", password);
+		User user_object = (User) q.uniqueResult();
+		
+		return user_object; 
+		
+		}finally {
+			
+			session.close();
+		}
+		
+	}
+
+	
 	
 	
 

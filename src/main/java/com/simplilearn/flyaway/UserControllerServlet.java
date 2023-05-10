@@ -45,7 +45,10 @@ try {
 				
 			
 		        case "VERIFY":
-					//List the students in MVC fashion
+					//Verify the user in MVC fashion
+		        	
+		        	signIn(request,response);    //Provided below
+			        break;
 		        	
 					
 					
@@ -90,6 +93,21 @@ try {
 	}
 
 	
+	private void signIn(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		
+		String e_mail = request.getParameter("username");	
+		String password = request.getParameter("password");	
+		
+        User user = userdao.verifyUser(e_mail, password);
+        
+        if(user == null) {            // i.e User doesn't exist
+        	response.sendRedirect("signInFailure.jsp");
+        }else {                        // i.e since got user object hence user exist;
+        	response.sendRedirect("index.html");
+        }
+        
+	}
+
 	private void signUp(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		
 		String e_mail = request.getParameter("username");	
