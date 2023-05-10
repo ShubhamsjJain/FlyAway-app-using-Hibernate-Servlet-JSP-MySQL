@@ -70,7 +70,7 @@ button:hover {
 }
 </style>
 <meta charset="ISO-8859-1">
-<title>Signup</title>
+<title>Admin Signup</title>
 </head>
 
 <body>
@@ -85,10 +85,10 @@ button:hover {
                 <p>Please fill in this form to create an account.</p>
                 <hr>
     
-                <input type="hidden" name="command" value="ADD"/>
+                <input type="hidden" name="command" value="NEWADMIN"/>
 
-                <label for="email"><b>User Name</b></label>
-                <input type="text" placeholder="Enter username" name="username" required>
+                <label for="email"><b>Admin ID</b></label>
+                <input type="text" placeholder="Enter ID" name="username" required>
 
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" required>

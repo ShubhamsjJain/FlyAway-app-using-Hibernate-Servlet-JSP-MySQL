@@ -94,7 +94,7 @@ button:hover {
                           <input type="password" placeholder="Enter Password" name="password" required>
                           
                                  <div class="clearfix">
-                                       <button type="button" class="cancelbtn">Cancel</button>
+                                       <button type="button" class="cancelbtn" onclick="window.location.href='index.html';return false;">Cancel</button>
                                        <button type="submit" class="signupbtn">Sign In</button>
    
                                  </div>
