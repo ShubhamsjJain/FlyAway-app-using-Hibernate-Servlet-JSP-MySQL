@@ -77,25 +77,30 @@ button:hover {
 
   <div class="content">
   
-	<form action="SignUpServlet" method="post" style="border:1px solid #ccc">
-  <div class="container">
-    <h1>Sign Up</h1>
-    <p>Please fill in this form to create an account.</p>
-    <hr>
-
-    <label for="email"><b>User Name</b></label>
-    <input type="text" placeholder="Enter username" name="username" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
-      
-    <div class="clearfix">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Sign Up</button>
-    </div>
+	<form action="user" method="get" style="border:1px solid #ccc">
+	
+         <div class="container">
+         
+                <h1>Sign Up</h1>
+                <p>Please fill in this form to create an account.</p>
+                <hr>
     
-  </div>
-</form>
+                <input type="hidden" name="command" value="ADD"/>
+
+                <label for="email"><b>User Name</b></label>
+                <input type="text" placeholder="Enter username" name="username" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+      
+                       <div class="clearfix">
+                       
+                             <button type="button" class="cancelbtn">Cancel</button>
+                             <button type="submit" class="signupbtn">Sign Up</button>
+                       </div>
+    
+         </div>
+      </form>
 
 </div>
     
