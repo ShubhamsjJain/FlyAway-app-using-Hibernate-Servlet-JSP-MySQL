@@ -102,6 +102,7 @@ text-align: right;
                                        <button type="submit" class="signupbtn">Sign In</button>
    
                                  </div>
+                                 
                            <p>New Admin <a href="AdminSignup.jsp" style="color:dodgerblue">click here</a>.</p>
                            <div class="right-align">
                            <a href="SignInFront.jsp" style="color:dodgerblue">Login as User</a>
