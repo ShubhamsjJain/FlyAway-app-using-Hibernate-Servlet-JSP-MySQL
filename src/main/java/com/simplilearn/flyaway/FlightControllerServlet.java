@@ -1,12 +1,15 @@
 package com.simplilearn.flyaway;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Servlet implementation class FlightControllerServlet
@@ -42,6 +45,13 @@ public class FlightControllerServlet extends HttpServlet {
 			
 			switch(theCommand){
 			        
+			
+			    case "LIST":
+				
+		        //List the flights in MVC fashion 
+		    
+		        flightList(request,response);    //Provided below
+		        break;
 			
 			    case "ADD":
 			
@@ -83,6 +93,18 @@ public class FlightControllerServlet extends HttpServlet {
 						
 			e.printStackTrace();
 		}
+	}
+
+	private void flightList(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		
+		List<Flight> flights = (List<Flight>)flightdao.listAllFlights();
+		
+		request.setAttribute("LIST_FLIGHTS",flights);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("list-all-flights.jsp");
+		
+		dispatcher.forward(request, response);
+		
 	}
 
 	private void flightAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {

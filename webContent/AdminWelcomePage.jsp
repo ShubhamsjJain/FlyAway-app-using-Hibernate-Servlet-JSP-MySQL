@@ -51,7 +51,7 @@ text-align: right;
 <hr>
 
 <button type="button" onclick="location.href='add-flight-form.jsp'">Add New Flight</button>
-<button type="button" onclick="location.href='AdminFlightSearch.jsp'">All Flight Info</button>
+<button type="button" onclick="window.location.href='flight?command=LIST';return false;">All Flight Info</button>
 
 </body>
 </html>
