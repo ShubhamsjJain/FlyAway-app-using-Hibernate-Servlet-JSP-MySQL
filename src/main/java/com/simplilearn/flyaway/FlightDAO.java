@@ -2,6 +2,7 @@ package com.simplilearn.flyaway;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -58,6 +59,22 @@ public class FlightDAO {
 			session.close();
 		}
 		
+	}
+
+	public List<Flight> listAllFlights()throws Exception {
+		
+        Session session = factory.openSession();
+		
+		try {
+			
+		List<Flight> list = session.createQuery("from Flight").list(); 
+		
+		return list; 
+		
+		}finally {
+			
+			session.close();
+		}
 	}
 
 	
