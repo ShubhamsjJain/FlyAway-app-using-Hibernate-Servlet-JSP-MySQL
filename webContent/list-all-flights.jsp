@@ -76,7 +76,8 @@ List<Flight> theFlights = (List<Flight>)request.getAttribute("LIST_FLIGHTS");
                             <input type="hidden" name="flynum" value="<%=f.getFly_Num()%>"/>
                             <input type="submit" value="Update">
                         </form></td>
-                     <td><form action="AdminDelete.jsp">
+                     <td><form action="flight" method="get">
+                            <input type="hidden" name="command" value="DELETE"/>
                             <input type="hidden" name="flynum" value="<%=f.getFly_Num()%>"/>
                             <input type="submit" value="Delete">
                          </form></td>
