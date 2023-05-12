@@ -5,9 +5,11 @@ import java.sql.Time;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
 
 public class FlightDAO {
 	
@@ -18,7 +20,7 @@ public class FlightDAO {
 		factory = HibernateUtil.getSessionFactory();
 	}
 
-	public void addNewFlight(String flynum, String src, String dest, int seats, int duration, double price, Time arrival_time, Time departure_time, Date schedule_date) {
+	public void addNewFlight(String flynum, String src, String dest, int seats, int duration, double price, Time departure_time, Time arrival_time, Date schedule_date) {
 		
 		Session session = factory.openSession();
 		Transaction transaction = null;
@@ -36,8 +38,8 @@ public class FlightDAO {
 			fl.setSeats(seats);
 			fl.setDuration(duration);
 			fl.setPrice(price);
-			fl.setArrival_time(arrival_time);
 			fl.setDeparture_time(departure_time);
+			fl.setArrival_time(arrival_time);
 			fl.setSchedule(schedule_date);
 			
 			session.save(fl);
@@ -75,6 +77,74 @@ public class FlightDAO {
 			
 			session.close();
 		}
+	}
+
+	public Flight getFlightObject(String flynum)throws Exception {
+		
+        Session session = factory.openSession();
+		
+		try {
+			
+			Query q = session.createQuery("from Flight f where f.fly_Num = :name");
+			q.setParameter("name",flynum);
+			Flight flight = (Flight) q.uniqueResult(); //Note that we are using uniqueResult rather than getSingleResult method to retrieve class entity 
+			                                                             //because if query return no result then uniqueResult method will give null 
+			                                                             //while getSingleResult method will throw an exception
+		
+		    return flight; 
+		
+		}finally {
+			
+			session.close();
+		}
+		
+	}
+
+	public void updateFlight(String flynum, String src, String dest, int seats, int duration, double price,
+			Time departure_time, Time arrival_time, Date schedule_date) {
+		
+		
+		Session session = factory.openSession();
+		Transaction transaction = null;
+		
+		try {
+			
+			transaction = session.beginTransaction();
+			
+			
+			String hql = "UPDATE Flight SET source=:source,destination=:destination,arrival_time=:arrival_time,"
+					+ "departure_time=:departure_time,schedule=:schedule,seats=:seats,duration=:duration,price=:price WHERE fly_Num=:fly_Num";
+			Query query1 = session.createQuery(hql);
+			
+			query1.setParameter("fly_Num",flynum);
+			query1.setParameter("source",src);
+			query1.setParameter("destination",dest);
+			query1.setParameter("arrival_time",arrival_time);
+			query1.setParameter("departure_time",departure_time);
+			query1.setParameter("schedule",schedule_date);
+			query1.setParameter("seats",seats);
+			query1.setParameter("duration",duration);
+			query1.setParameter("price",price);
+			
+			
+			query1.executeUpdate();
+				
+			
+			//Commit transaction
+			
+			transaction.commit();
+			
+		}catch(HibernateException e) {
+			
+			if(transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}finally {
+			
+			session.close();
+		}
+		
 	}
 
 	

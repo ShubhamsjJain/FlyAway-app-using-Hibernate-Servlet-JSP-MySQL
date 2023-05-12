@@ -49,8 +49,8 @@ List<Flight> theFlights = (List<Flight>)request.getAttribute("LIST_FLIGHTS");
                    <TH>Destination </TH>
                    <TH>Scheduled date </TH>
                    <TH>Duration in (Hours) </TH>
-                   <TH>Arrival Time</TH>
                    <TH>Departure Time</TH>
+                   <TH>Arrival Time</TH>
                    <TH>Price in (Rupees)</TH>
                    <TH>Seats </TH>
                    
@@ -67,11 +67,12 @@ List<Flight> theFlights = (List<Flight>)request.getAttribute("LIST_FLIGHTS");
                      <td><%= f.getDestination()%></td>
                      <td><%= f.getSchedule()%></td>
                      <td><%= f.getDuration()%></td>
+                      <td><%= f.getDeparture_time()%></td>
                      <td><%= f.getArrival_time()%></td>
-                     <td><%= f.getDeparture_time()%></td>
                      <td><%= f.getPrice()%></td>
                      <td><%= f.getSeats()%></td>
-                     <td><form action="AdminUpdateFrontEnd.jsp">
+                     <td><form action="flight" method="get">
+                            <input type="hidden" name="command" value="LOAD"/>
                             <input type="hidden" name="flynum" value="<%=f.getFly_Num()%>"/>
                             <input type="submit" value="Update">
                         </form></td>
