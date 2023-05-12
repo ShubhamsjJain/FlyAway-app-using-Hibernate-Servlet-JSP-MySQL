@@ -147,6 +147,41 @@ public class FlightDAO {
 		
 	}
 
+	public void deleteFlight(String flynum)throws Exception {
+		
+		Session session = factory.openSession();
+		Transaction transaction = null;
+		
+		try {
+			
+			transaction = session.beginTransaction();
+			
+			Query query1 = session.createQuery("from Flight f where f.fly_Num= :name");
+			
+			query1.setParameter("name",flynum);
+			
+			Flight flight = (Flight) query1.uniqueResult(); 
+			
+			session.delete(flight);
+				
+			
+			//Commit transaction
+			
+			transaction.commit();
+			
+		}catch(HibernateException e) {
+			
+			if(transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}finally {
+			
+			session.close();
+		}
+		
+	}
+
 	
 	}
 

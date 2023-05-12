@@ -81,14 +81,18 @@ public class FlightControllerServlet extends HttpServlet {
 			    	
                 case "DELETE":
 			    	
-			    	//Delete the student in MVC fashion 
+			    	//Delete the flight in MVC fashion 
 			    	
+                	flightDelete(request,response);    //Provided below
+			        break;
 			    	
 			        
 			     default:
 			    	 
 			    	  //Provided below
 					 
+			    	 flightList(request,response);    //Provided below
+				     break;
 			
 			}
 			
@@ -98,6 +102,16 @@ public class FlightControllerServlet extends HttpServlet {
 						
 			e.printStackTrace();
 		}
+	}
+
+	private void flightDelete(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		
+        String flynum = request.getParameter("flynum");
+		
+		flightdao.deleteFlight(flynum);
+		
+		flightList(request,response);
+		
 	}
 
 	private void flightUpdate(HttpServletRequest request, HttpServletResponse response)throws Exception {
