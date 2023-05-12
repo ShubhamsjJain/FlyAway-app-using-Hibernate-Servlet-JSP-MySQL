@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page import="java.util.*" %>
+    <%@ page import="com.simplilearn.flyaway.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,8 +82,14 @@ button:hover {
 
 </style>
 <meta charset="ISO-8859-1">
-<title>Add Flight Form</title>
+<title>Update Flight Form</title>
 </head>
+
+<% 
+//Get flight object from servlet
+Flight flight = (Flight)request.getAttribute("LOAD_FLIGHT"); 
+%>
+
 <body>
 
   <div class="content">
@@ -88,37 +98,38 @@ button:hover {
 	   
 	           <div class="container">
 	           
-	                <h2>Add Flight information</h2>
+	                <h2>Add Updated Flight information</h2>
 	                <hr>
 	                
-	                <input type="hidden" name="command" value="ADD"/>
+	                <input type="hidden" name="command" value="UPDATE"/>
 	                
 		            <label>Flight Number</label> 
-		            <input type="text" name="flyno"/><br><br>
+		            <input type="text" name="flyno" value="<%= flight.getFly_Num() %>"/><br><br>
 		
 		            <label>Source</label> 
-		            <input type="text" name="src"/><br><br>
+		            <input type="text" name="src" value="<%= flight.getSource() %>"/><br><br>
 		
 		            <label>Destination</label> 
-		            <input type="text" name="dest"/><br><br>
+		            <input type="text" name="dest" value="<%= flight.getDestination() %>"/><br><br>
 		
 		            <label> Seats</label> 
-		            <input type="text" name="seats"  /><br><br>
+		            <input type="text" name="seats" value="<%= flight.getSeats() %>"  /><br><br>
 		
 		            <label>Duration</label> 
-		            <input type="text" name="duration"  /><br><br>
+		            <input type="text" name="duration" value="<%= flight.getDuration() %>"  /><br><br>
 		
 		            <label>Price</label> 
-		            <input type="text" name="price"  /><br><br>
+		            <input type="text" name="price" value="<%= flight.getPrice() %>" /><br><br>
 		            
-		            <label>Departure Time</label> 
-		            <input type="time" name="deptime"/><br><br>
+		             <label>Departure Time</label> 
+		            <input type="time" name="deptime" value="<%= flight.getDeparture_time() %>"/><br><br>
 		
 		            <label>Arrival Time</label> 
-		            <input type="time" name="arrtime"/><br><br>
+		            <input type="time" name="arrtime" value="<%= flight.getArrival_time() %>"/><br><br>
+		
 		
 		            <label> scheduled Date</label> 
-		            <input type="date" name="schdate"><br><br>
+		            <input type="date" name="schdate" value="<%= flight.getSchedule() %>"><br><br>
 		
 		
 		
