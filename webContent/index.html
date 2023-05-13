@@ -49,29 +49,17 @@ label{
 <br><br><br><br>          
 <center>
 
-<form action="FlightSearch.jsp">
+<form action="flight" method="get">
 	
-	
+	    <input type="hidden" name="command" value="SEARCH"/>
+	    
 		<label>Source</label>
-	    <select name="src" id="src" placeholder="enter book price">
-	      <option value="Bangalore">Bangalore</option>
-          <option value="Belgavi">Belgavi</option>
-          <option value="Chennai">Chennai</option>
-          <option value="Delhi">Delhi</option>
-          <option value="Mumbai">Mumbai</option>
-          <option value="Hyderabad">Hyderabad</option>
-       </select>
+	    <input type="text" name="src" id="src" placeholder="Enter Source">
+	      
 		<label>Destination</label>
-		<select name="des" id="des">
+		<input type="text" name="des" id="des" placeholder="Enter Destination">
 		
-	    <option value="Banglore">Banglore</option>
-          <option value="Belgavi">Belgavi</option>
-          <option value="Chennai">Chennai</option>
-          <option value="Delhi">Delhi</option>
-          <option value="Mumbai">Mumbai</option>
-          <option value="Hyderabad">Hyderabad</option>		
 
-</select>
 	
 		<label>Date</label>
 		<input type=Date name="date" placeholder="enter book price"> 

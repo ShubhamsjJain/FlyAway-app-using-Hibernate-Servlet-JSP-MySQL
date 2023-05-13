@@ -182,6 +182,34 @@ public class FlightDAO {
 		
 	}
 
+	public List<Flight> searchFlight(String src, String des, Date schedule_date)throws Exception {
+		
+		
+        Session session = factory.openSession();
+		
+		try {
+			
+			String hql = "FROM Flight WHERE source=:source1 and destination=:dest and schedule=:schdate";
+			Query query = session.createQuery(hql);
+			
+			
+		    query.setParameter("source1", src);
+			query.setParameter("dest", des);
+			query.setParameter("schdate", schedule_date);
+			
+			
+			List<Flight> flights = query.list();
+			
+			return flights;
+			
+		
+		
+		}finally {
+			
+			session.close();
+		}
+	}
+
 	
 	}
 
