@@ -85,6 +85,16 @@ public class FlightControllerServlet extends HttpServlet {
 			    	
                 	flightDelete(request,response);    //Provided below
 			        break;
+			        
+			        
+               case "SEARCH":
+			    	
+			    	//Search the flight in MVC fashion 
+			    	
+                	flightSearch(request,response);    //Provided below
+			        break;
+			        
+			        
 			    	
 			        
 			     default:
@@ -102,6 +112,23 @@ public class FlightControllerServlet extends HttpServlet {
 						
 			e.printStackTrace();
 		}
+	}
+
+	private void flightSearch(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		
+		String src = request.getParameter("src");
+		String des = request.getParameter("des");
+		java.util.Date schdate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("date"));
+		java.sql.Date schedule_date = new java.sql.Date(schdate.getTime());
+		
+		List<Flight> allAvailableFlights = flightdao.searchFlight(src, des, schedule_date);
+		
+		request.setAttribute("AVAILABLE_FLIGHTS", allAvailableFlights);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("flight-search-result.jsp");
+		dispatcher.forward(request, response);
+		
+		
 	}
 
 	private void flightDelete(HttpServletRequest request, HttpServletResponse response)throws Exception {
