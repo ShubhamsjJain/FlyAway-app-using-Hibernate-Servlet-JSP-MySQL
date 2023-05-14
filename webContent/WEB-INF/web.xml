@@ -30,6 +30,26 @@
   <url-pattern>/flight</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  <servlet-name>PassengerControllerServlet</servlet-name>
+  <servlet-class>com.simplilearn.flyaway.PassengerControllerServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>PassengerControllerServlet</servlet-name>
+  <url-pattern>/passenger</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>PaymentControllerServlet</servlet-name>
+  <servlet-class>com.simplilearn.flyaway.PaymentControllerServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>PaymentControllerServlet</servlet-name>
+  <url-pattern>/payment</url-pattern>
+  </servlet-mapping>
+  
   
   
 </web-app>
