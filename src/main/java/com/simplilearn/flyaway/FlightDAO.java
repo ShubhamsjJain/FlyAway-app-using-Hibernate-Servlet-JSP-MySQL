@@ -210,8 +210,54 @@ public class FlightDAO {
 		}
 	}
 
-	
+	public void updateSeatsInFlight(Passenger passenger)throws Exception {
+		
+		Session session = factory.openSession();
+		Transaction transaction = null;
+		
+		try {
+			
+			transaction = session.beginTransaction();
+			
+			String flight_num = passenger.getFlightNumber();
+			int num_of_passengers = passenger.getNoOfPerson();
+			
+			Query query1 = session.createQuery("from Flight f where f.fly_Num= :name");	
+			query1.setParameter("name",flight_num);		
+			Flight flight = (Flight) query1.uniqueResult(); 
+			
+			int total_seats_available = flight.getSeats();
+			int updated_seats = (total_seats_available - num_of_passengers);
+			
+			
+			//Update flight
+
+			Query q = session.createQuery("UPDATE Flight SET seats=:seats WHERE fly_Num=:flyNum");
+			
+			q.setParameter("seats", updated_seats);
+			q.setParameter("flyNum", flight_num);
+			
+			q.executeUpdate();
+				
+			
+			//Commit transaction
+			
+			transaction.commit();
+			
+		}catch(HibernateException e) {
+			
+			if(transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}finally {
+			
+			session.close();
+		}
+		
 	}
+	
+}
 
 	
 	

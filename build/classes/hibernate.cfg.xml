@@ -17,6 +17,8 @@
     <mapping class = "com.simplilearn.flyaway.User"/>
     <mapping class = "com.simplilearn.flyaway.Admin"/>
     <mapping class = "com.simplilearn.flyaway.Flight"/>
+    <mapping class = "com.simplilearn.flyaway.Passenger"/>
+     <mapping class = "com.simplilearn.flyaway.Payment"/>
     
   
   </session-factory>

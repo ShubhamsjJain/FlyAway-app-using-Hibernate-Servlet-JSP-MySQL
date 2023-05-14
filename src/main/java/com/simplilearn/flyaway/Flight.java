@@ -2,12 +2,18 @@ package com.simplilearn.flyaway;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -46,14 +52,18 @@ public class Flight {
 	@Column(name="schedule")
 	private Date schedule;
 	
+	
 
 	public Flight() {
 		
 	}
 
 
+	
+
+
 	public Flight(int iD, String fly_Num, String source, String destination, int seats, int duration, double price,
-			Time arrival_time, Time departure_time, Date schedule) {
+			Time arrival_time, Time departure_time, Date schedule, List<Passenger> passengers) {
 		
 		ID = iD;
 		this.fly_Num = fly_Num;
@@ -65,7 +75,11 @@ public class Flight {
 		this.arrival_time = arrival_time;
 		this.departure_time = departure_time;
 		this.schedule = schedule;
+		
 	}
+
+
+
 
 
 	public Flight(String source, String destination, Date schedule) {
@@ -174,14 +188,7 @@ public class Flight {
 	public void setSchedule(Date schedule) {
 		this.schedule = schedule;
 	}
-
-
-	@Override
-	public String toString() {
-		return "Flight [ID=" + ID + ", fly_Num=" + fly_Num + ", source=" + source + ", destination=" + destination
-				+ ", seats=" + seats + ", duration=" + duration + ", price=" + price + ", arrival_time=" + arrival_time
-				+ ", departure_time=" + departure_time + ", schedule=" + schedule + "]";
-	}
+	
 	
 	
 	
